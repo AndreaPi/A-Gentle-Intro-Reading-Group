@@ -32,7 +32,7 @@ $$ \mathbb{P}(Y_{test} \in\mathcal{T}(X_{test})) \geq 1-\alpha$$
 - $\mathcal{T}(x)$ can be interpreted as a set of plausible classes for $X_{test}$. **To be more precise**, we can say that $\mathcal{T}(x)$ is the set of all labels for which we fail to reject the null hypothesis $H_0$:"$(X_{test},y)$ is a correct pairing". The conformal scores are the $p-$values under $H_0$ of each label $y$
 - $\mathcal{T}(x)$ is _valid_ $\triangleq$ it has guaranteed coverage $1-\alpha$ even for finite sample sizes. In other words, we have
     $$ \mathbb{P}(Y_{test} \in\mathcal{T}(X_{test})) \geq 1-\alpha$$
-even if the calbration set is finite.
+even if the calibration set is finite.
 
 #### 1.1 Instructions for Conformal Prediction
 It's basically what we already said, but it adds that equation (1) has a formal proof if $(X_i,Y_i)_{i=1,...,n}$ are iid samples or even just exchangeable. 
@@ -41,7 +41,7 @@ $\mathcal{T}(x)$ built with conformal prediction, is valid for any choice of sco
 
 ### 2 Examples of Conformal Prediction 
 #### 2.1 Classification with Adaptive Predictive Sets
-The algorithm shown before generates prediction sets of smallest average size, but they tend to overcover simple examples and undercover hard examples. _Adaptive prediction sets_ solve this issue. 
+The algorithm shown before generates prediction sets of smallest average size, but they tend to over-cover simple examples and undercover hard examples. _Adaptive prediction sets_ solve this issue. 
 
 If the softmax scores $\hat{f}(x)_y$were perfect models of $\mathbb{P}(Y_{test}=y|X_{test}=x)$, then we could build a valid prediction set just by ordering the labels by softmax scores, and including the top-scoring ones unless the total probability mass is $\geq 1-\alpha$:
 
@@ -73,7 +73,7 @@ Proof of  second equality: $s(X_{test},y) = \max\{\hat{t}_{\alpha/2}(X_{test})-y
  2. if $\max\{c_1-y,y-c_2\}=y-c_2$, then $y-c_2\leq\hat{q}\implies y\leq c_2+\hat{q}$
 Q.E.D.
 
-Thus we expand or shrink the heuristic prediction set $[\hat{t}_{\alpha/2}(x)$,$\hat{t}_{1-\alpha/2}(x)]$ by $\hat{q}$ to achieve coverage. Note that since the correction $\hat{q}$ to the heuristic prediction set is independent of $x$, we may undercover for some $x$ and overcover for some other $x$, but the _marginal coverage_ (on average over all $x$) will still be valid.
+Thus we expand or shrink the heuristic prediction set $[\hat{t}_{\alpha/2}(x)$,$\hat{t}_{1-\alpha/2}(x)]$ by $\hat{q}$ to achieve coverage. Note that since the correction $\hat{q}$ to the heuristic prediction set is independent of $x$, we may undercover for some $x$ and over-cover for some other $x$, but the _marginal coverage_ (on average over all $x$) will still be valid.
 
 **Advantages of quantile regression**
 - the QR intervals have good coverage even before applying CP
@@ -98,7 +98,7 @@ In both cases we choose to model $Y_{test}|X_{test}=x\sim\mathcal{N}(\mu(x),\sig
 
 Proof: same as for CQR.
 
-**Advantages of conformalized regession based on uncertainty scalars**
+**Advantages of conformalized regression based on uncertainty scalars**
 - no need to retrain the model,  as long as it outputs an uncertainty scalar together with the point prediction (or it can be made to do so with minor modifications, e.g. MC Dropout)
 - `sklearn`-like library available [crepes](https://github.com/henrikbostrom/crepes)
   
@@ -109,5 +109,5 @@ Proof: same as for CQR.
 $ doesn't depend on $\alpha$, so it doesn't scale correctly when we change it
 
 #### 2.3 Conformalizing Bayes
-Not too interesting, except for the **Remarks** where they note that for classification or regression, where it makes sense to talk about coverage, CP is a simple, pragmatic and computationally very efficient way to generate valid prediction sets. However, for *structured prediction*, where the output is not just an integer or a real numnber, but it's a complex object (instance segmentation, language modeling, protein folding, multilabel classification, etc.), the concept of coverage is ill-defined, and we must generalize CP to provide distribution-free UQ.
+Not too interesting, except for the **Remarks** where they note that for classification or regression, where it makes sense to talk about coverage, CP is a simple, pragmatic and computationally very efficient way to generate valid prediction sets. However, for *structured prediction*, where the output is not just an integer or a real number, but it's a complex object (instance segmentation, language modeling, protein folding, multilabel classification, etc.), the concept of coverage is ill-defined, and we must generalize CP to provide distribution-free UQ.
 
