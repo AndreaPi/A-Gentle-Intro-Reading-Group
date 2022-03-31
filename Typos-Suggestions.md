@@ -19,9 +19,6 @@
 ##### Feature-stratified coverage metric.
 **Typo**: "In words, this is the observed coverage for all units for which ~~to~~ the discrete feature takes value _g_"
 **Not sure if typo**: "For example, in classification we might divide the observations _into units into three groups_". The last part is a bit unclear to me, not sure if it's a typo or not.
-
-##### 5.1 Multi-label classification with FDR control
-**Typo?**: "We use fixed-sequence testing because the FDR is a nearly monotone risk". _Nearly_ monotone? It seems monotone to me. See also **5.3 Image Segmentation with FNR control**: you write that "[...] the FNR is monotone". I'm not sure why FDR would be nearly monotone and FNR would be exactly monotone: they're defined in the same way, except for the denominator. More formally: in section 5.1, if $\lambda_1\geq\lambda_2$, then  $\mathcal{T}_{\lambda_1}(x)\subseteq\mathcal{T}_{\lambda_2}(x)$ so it must be $R_{\text{FDR}}(\lambda_1)\geq R_{\text{FDR}}(\lambda_2)$. Similarly, in section 5.3, if $\lambda_1\geq\lambda_2$, then $\mathcal{T}_{\lambda_1}(x)_{(i,j)}\subseteq\mathcal{T}_{\lambda_2}(x)_{(i,j)}\ \forall\ 1\leq i,j\leq d$ and thus $R_{\text{FNR}}(\lambda_1)\geq R_{\text{FNR}}(\lambda_2)$.
 ##### 5.2 Simultaneous guarantees on OOD detection and coverage
 **Typo**: in the table at the top of page 25,, the two null hypotheses are $H_\lambda^{(1)}:R_1(\lambda)\leq\alpha_1,\ H_\lambda^{(2)}:R_2(\lambda)\leq\alpha_2$. They should be  $H_\lambda^{(1)}:R_1(\lambda)>\alpha_1,\ H_\lambda^{(2)}:R_2(\lambda)>\alpha_2$
 
