@@ -26,7 +26,11 @@ Now,
    
 Thus $\mathcal{T}(x)=[\hat{t}_{\alpha/2}(x)-\hat{q},\hat{t}_{1-\alpha/2}(x)+\hat{q}] \quad \square.$ Correct?
 
-**Q**: if I understand correctly, Conformalized regression can be applied to any model which either outputs an uncertainty scalar (together with the point prediction), or can be made to do so with minor modifications. This means that it could be applied to correct the well-known deficiencies of MC Dropout. Is this correct? Well, at least it would fix the coverage deficiency - it would still be worse that using Conformalized Quantile Regression.
-
 ##### 2.3 Conformalizing Scalar Uncertainty Estimates
 **Q**: if I understand correctly, Conformalized regression can be applied to any model which either outputs an uncertainty scalar (together with the point prediction), or can be made to do so with minor modifications. This means that it could be applied to correct the well-known deficiencies of MC Dropout. Is this correct? Well, at least it would fix the coverage deficiency - it would still be worse that using Conformalized Quantile Regression.
+
+#### 3.1 Interlude: the effect of the size of the calibration set
+> That is, if we run conformal prediction with one calibration set and then check the coverage on an infinite number of validation points, **the coverage will not converge to a fixed value**.
+
+**Q**: why? If we fix the calibration set and we average over all possible test points, the coverage becomes a deterministic value. 
+**Q**: mean of coverage is $E[C]=\frac{n + 1 − l}{n + 1 − l + l}=1-\frac{\lfloor(n+1)\alpha\rfloor}{n + 1}$, correct?

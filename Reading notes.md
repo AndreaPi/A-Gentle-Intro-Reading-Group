@@ -111,3 +111,19 @@ $ doesn't depend on $\alpha$, so it doesn't scale correctly when we change it
 #### 2.3 Conformalizing Bayes
 Not too interesting, except for the **Remarks** where they note that for classification or regression, where it makes sense to talk about coverage, CP is a simple, pragmatic and computationally very efficient way to generate valid prediction sets. However, for *structured prediction*, where the output is not just an integer or a real number, but it's a complex object (instance segmentation, language modeling, protein folding, multilabel classification, etc.), the concept of coverage is ill-defined, and we must generalize CP to provide distribution-free UQ.
 
+### 3 Evaluating Conformal Prediction 
+Once you write a CP algorithm, you need to evaluate mainly two things:
+- **correctness**: **coverage is a random variable**. The exact coverage guarantee is on the _expectation_ of this random variable, averaging over all possible calibration sets and test points! Don't expect your prediction sets to have exact coverage for a fixed calibration set, and for each single test set. Thus checking correctness is not as easy as running the algorithm for a given calibration set & validation set (set of test points), seeing that the coverage $C$ is not $\geq 1-\alpha$ and declaring "CP is a hoax!?!?". We'll need to correctly take into account the random nature of $C$ when doing these checks.
+- **adaptivity**: while CP gives a guarantee on the (marginal!) coverage, it doesn't give a guarantee on the _adaptivity_ of the prediction sets to the hardness of the input. Still, adaptivity is essential in practice, so we need to know how to evaluate it.
+
+#### 3.1 Interlude: the effect of the size of the calibration set
+First of all, let's consider the expectation of coverage over all test sets (or in other words, we consider an infinite validation set). Even in this case, coverage isn't be a deterministic scalar, because, for a fixed model, it's a function of the calibration set $S=\{(X_i, Y_i)_{i=1}^n\}$: since the calibration set is a random vector, **coverage is a random variable**. Its distribution is:
+
+$$\mathbb{E}[\{Y_{test} \in \mathcal{T}(X_{test})\}∣\{(X_i, Y_i)\}^n_{i=1}] = C \sim \text{Beta}(n + 1 − l, l), \quad l=\lfloor(n+1)\alpha\rfloor$$
+
+Its mean is $E[C]=\frac{n + 1 − l}{n + 1 − l + l}=1-\frac{\lfloor(n+1)\alpha\rfloor}{n + 1}$. Use the quantiles of the Beta distribution to compute $n(\alpha,\epsilon,\delta)$ such that $\mathbb{P}(|C-(1-\alpha)|\leq\epsilon)=1-\delta$
+
+
+
+##### 5.1 Multi-label classification with FDR control
+**No typo**: "We use fixed-sequence testing because the FDR is a nearly monotone risk". _Nearly_ monotone? It seems monotone to me. See also **5.3 Image Segmentation with FNR control**: you write that "[...] the FNR is monotone". I'm not sure why FDR would be nearly monotone and FNR would be exactly monotone: they're defined in the same way, except for the denominator. More formally: in section 5.1, if $\lambda_1\geq\lambda_2$, then  $\mathcal{T}_{\lambda_1}(x)\subseteq\mathcal{T}_{\lambda_2}(x)$ so it must be $R_{\text{FDR}}(\lambda_1)\geq R_{\text{FDR}}(\lambda_2)$. Similarly, in section 5.3, if $\lambda_1\geq\lambda_2$, then $\mathcal{T}_{\lambda_1}(x)_{(i,j)}\subseteq\mathcal{T}_{\lambda_2}(x)_{(i,j)}\ \forall\ 1\leq i,j\leq d$ and thus $R_{\text{FNR}}(\lambda_1)\geq R_{\text{FNR}}(\lambda_2)$.
