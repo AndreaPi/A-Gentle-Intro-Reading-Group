@@ -1,2 +1,4 @@
 
 .ipynb_checkpoints/Cap 6.3 Outlier detection with conformal prediction-checkpoint.ipynb
+*.ipynb
+Cap 6.3 Outlier detection with conformal prediction.ipynb
