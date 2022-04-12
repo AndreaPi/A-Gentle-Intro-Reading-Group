@@ -22,8 +22,11 @@
 ##### 5.2 Simultaneous guarantees on OOD detection and coverage
 **Typo**: in the table at the top of page 25,, the two null hypotheses are $H_\lambda^{(1)}:R_1(\lambda)\leq\alpha_1,\ H_\lambda^{(2)}:R_2(\lambda)\leq\alpha_2$. They should be  $H_\lambda^{(1)}:R_1(\lambda)>\alpha_1,\ H_\lambda^{(2)}:R_2(\lambda)>\alpha_2$
 
+##### 6.1 Group-balanced conformal prediction
+**Typo**: "For example, we may ~~we may~~ require"
+
 ##### 6.4 Conformal prediction under covariate shift
 **Typo**: "[..] so diseases present during ~~to~~ infancy will be over-predicted."
-**Typo**: the formula for $\hat{q}(x)$ has some typo (maybe a ) is missing?), but I can't really tell, because frankly this is the part I understood the least 😅
+**Typo**: the formula for $\hat{q}(x)$ has some typo (maybe a ) is missing?), but I can't really tell, because frankly this is the part I understood the least 😅 
 ##### A Theorem and Proof: Coverage Property of Conformal Prediction
 **Typo**: equation in the middle of the page, more or less: $\{Y_{test} \in \mathcal{T}(X_{test})\} = \{s_{n+1} \sout{>}\leq s_{\lceil(n+1)(1−α)\rceil}\}.$
