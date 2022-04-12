@@ -28,6 +28,5 @@
 ##### 6.4 Conformal prediction under covariate shift
 **Typo**: "[..] so diseases present during ~~to~~ infancy will be over-predicted."
 **Typo**: the formula for $\hat{q}(x)$ has some typo (maybe a ) is missing?), but I can't really tell, because frankly this is the part I understood the least 😅 
-  - Artur: yes, there is a ")" missing right before the identity function: $... p_i^w(x) ...$
 ##### A Theorem and Proof: Coverage Property of Conformal Prediction
 **Typo**: equation in the middle of the page, more or less: $\{Y_{test} \in \mathcal{T}(X_{test})\} = \{s_{n+1} \sout{>}\leq s_{\lceil(n+1)(1−α)\rceil}\}.$
